@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر عماد العجايبي - هواتف وأسكرينات</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --samsung-blue: #1428a0;
+            --redmi-orange: #ff6900;
+            --oppo-green: #46c3b0;
+            --vivo-blue: #415fff;
+            --infinix-black: #000000;
+            --dark-bg: #2c3e50;
+            --screen-hd: #8e44ad;
+            --screen-5d: #e74c3c;
+            --screen-ghazala: #f39c12;
+            --screen-gorilla: #16a085;
+            --screen-clear: #3498db;
+            --accessories: #9b59b6;
+            --transition: all 0.3s ease;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Tajawal', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            line-height: 1.6;
+        }
+        .main-header {
+            background: linear-gradient(135deg, var(--dark-bg), #34495e);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-bottom: 30px;
+        }
+        .main-header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+        .main-header p {
+            margin: 10px 0 0;
+            opacity: 0.9;
+        }
+        .tabs-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #ddd;
+            padding: 0 15px;
+        }
+        .tab-btn {
+            padding: 12px 25px;
+            border: none;
+            background: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 1rem;
+            color: #666;
+            position: relative;
+        }
+        .tab-btn.active {
+            color: var(--dark-bg);
+        }
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--dark-bg);
+        }
+        .search-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 15px 30px;
+        }
+        .search-input {
+            padding: 12px 20px;
+            border: 2px solid #ddd;
+            border-radius: 50px;
+            width: 100%;
+            max-width: 500px;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        .search-input:focus {
+            outline: none;
+            border-color: var(--dark-bg);
+            box-shadow: 0 0 0 3px rgba(44, 62, 80, 0.2);
+        }
+        .brands-nav, .categories {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+            padding: 0 15px;
+        }
+        .brand-btn, .category-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            font-size: 0.9rem;
+        }
+        .brand-btn img, .category-btn img {
+            width: 20px;
+            margin-left: 8px;
+        }
+        .samsung-btn { background-color: var(--samsung-blue); color: white; }
+        .redmi-btn { background-color: var(--redmi-orange); color: white; }
+        .oppo-btn { background-color: var(--oppo-green); color: white; }
+        .vivo-btn { background-color: var(--vivo-blue); color: white; }
+        .infinix-btn { background-color: var(--infinix-black); color: white; }
+        .hd-btn { background-color: var(--screen-hd); color: white; }
+        .d5-btn { background-color: var(--screen-5d); color: white; }
+        .ghazala-btn { background-color: var(--screen-ghazala); color: white; }
+        .gorilla-btn { background-color: var(--screen-gorilla); color: white; }
+        .clear-btn { background-color: var(--screen-clear); color: white; }
+        .accessories-btn { background-color: var(--accessories); color: white; }
+        
+        .brand-btn:hover, .category-btn:hover, 
+        .brand-btn.active, .category-btn.active {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            opacity: 0.9;
+        }
+        
+        .content-section {
+            display: none;
+            max-width: 1300px;
+            margin: 0 auto 50px;
+            padding: 0 15px;
+        }
+        .active-section {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        .brand-header, .category-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid;
+        }
+        .brand-header img, .category-header img {
+            height: 40px;
+            margin-left: 15px;
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: var(--transition);
+            position: relative;
+            opacity: 1;
+            transform: translateY(0);
+            animation: fadeIn 0.5s ease forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: var(--redmi-orange);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            z-index: 1;
+        }
+        .product-image-container {
+            width: 100%;
+            height: 200px;
+            background: #f9f9f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .product-image {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: var(--transition);
+        }
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+        .product-info {
+            padding: 15px;
+            border-top: 1px solid #eee;
+        }
+        .product-title {
+            font-size: 1.1rem;
+            margin: 0 0 8px;
+            color: #333;
+            font-weight: 700;
+        }
+        .product-specs {
+            margin: 15px 0;
+            padding: 0;
+            list-style-type: none;
+        }
+        .product-specs li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-right: 15px;
+            font-size: 0.9rem;
+            color: #555;
+        }
+        .product-specs li::before {
+            content: "•";
+            color: var(--samsung-blue);
+            font-weight: bold;
+            position: absolute;
+            right: 0;
+        }
+        .contact-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            color: white;
+            text-align: center;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            margin-top: 10px;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+        
+        /* تحسينات للجوال */
+        @media (max-width: 768px) {
+            .main-header h1 {
+                font-size: 1.5rem;
+            }
+            .main-header p {
+                font-size: 0.9rem;
+            }
+            .tab-btn {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+            .brand-btn, .category-btn {
+                padding: 8px 15px;
+                font-size: 0.8rem;
+            }
+            .brand-btn img, .category-btn img {
+                width: 18px;
+                margin-left: 5px;
+            }
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 15px;
+            }
+            .product-image-container {
+                height: 150px;
+                padding: 15px;
+            }
+            .product-title {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-header">
+        <h1>متجر عماد العجايبي المتكامل</h1>
+        <p>هواتف ذكية - أسكرينات حماية - إكسسوارات</p>
+    </div>
+
+    <div class="tabs-container">
+        <button class="tab-btn active" onclick="showSection('phones')">الهواتف</button>
+        <button class="tab-btn" onclick="showSection('screens')">الأسكرينات</button>
+        <button class="tab-btn" onclick="showSection('accessories')">الإكسسوارات</button>
+    </div>
+
+    <div class="search-container">
+        <input type="text" class="search-input" placeholder="ابحث عن منتج..." id="searchInput">
+    </div>
+
+    <!-- قسم الهواتف -->
+    <div id="phones" class="content-section active-section">
+        <div class="brands-nav">
+            <button class="brand-btn redmi-btn active" onclick="filterProducts('phones', 'redmi')">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Xiaomi_logo_%282021-%29.svg" alt="Redmi"> ريدمي
+            </button>
+            <button class="brand-btn oppo-btn" onclick="filterProducts('phones', 'oppo')">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Oppo_LOGO_2019.svg" alt="Oppo"> أوبو
+            </button>
+            <button class="brand-btn vivo-btn" onclick="filterProducts('phones', 'vivo')">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Vivo_logo.svg" alt="Vivo"> فيفو
+            </button>
+            <button class="brand-btn infinix-btn" onclick="filterProducts('phones', 'infinix')">
+                <img src="https://www.infinixmobility.com/fileadmin/images/logo.png" alt="Infinix"> انفنكس
+            </button>
+        </div>
+
+        <!-- هواتف ريدمي -->
+        <div id="phones-redmi" class="brand-products active-brand">
+            <div class="brand-header" style="border-color: var(--redmi-orange);">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Xiaomi_logo_%282021-%29.svg" alt="Redmi Logo">
+                <h2>هواتف ريدمي</h2>
+            </div>
+            <div class="products-grid">
+                <!-- Redmi A3 -->
+                <div class="product-card" data-search="ريدمي A3 هاتف ذكي">
+                    <div class="product-image-container">
+                        <img src="https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1682391115.11192421.png" alt="Redmi A3" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">ريدمي A3</h3>
+                        <ul class="product-specs">
+                            <li>شاشة 6.5 بوصة HD+</li>
+                            <li>معالج MediaTek Helio G36</li>
+                            <li>ذاكرة 3/4GB رام</li>
+                            <li>تخزين 64/128GB</li>
+                            <li>كاميرة مزدوجة 8+0.3 ميجابيكسل</li>
+                            <li>بطارية 5000 مللي أمبير</li>
+                        </ul>
+                        <a href="https://wa.me/20123456789?text=أريد الاستفسار عن ريدمي A3" class="contact-btn" style="background: var(--redmi-orange);">
+                            استفسر عبر واتساب
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Redmi A3x -->
+                <div class="product-card" data-search="ريدمي A3x هاتف ذكي">
+                    <div class="product-image-container">
+                        <img src="https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1682391115.11192421.png" alt="Redmi A3x" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">ريدمي A3x</h3>
+                        <ul class="product-specs">
+                            <li>شاشة 6.5 بوصة HD+</li>
+                            <li>معالج MediaTek Helio G36</li>
+                            <li>ذاكرة 3/4GB رام</li>
+                            <li>تخزين 64/128GB</li>
+                            <li>كاميرة مزدوجة 8+0.3 ميجابيكسل</li>
+                            <li>بطارية 5000 مللي أمبير</li>
+                        </ul>
+                        <a href="https://wa.me/20123456789?text=أريد الاستفسار عن ريدمي A3x" class="contact-btn" style="background: var(--redmi-orange);">
+                            استفسر عبر واتساب
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Redmi 12C -->
+                <div class="product-card" data-search="ريدمي 12C هاتف ذكي">
+                    <div class="product-badge">الأكثر مبيعاً</div>
+                    <div class="product-image-container">
+                        <img src="https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1675063708.34673089.png" alt="Redmi 12C" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">ريدمي 12C</h3>
+                        <ul class="product-specs">
+                            <li>شاشة 6.71 بوصة HD+</li>
+                            <li>معالج MediaTek Helio G85</li>
+                            <li>ذاكرة 3/4/6GB رام</li>
+                            <li>تخزين 64/128GB</li>
+                            <li>كاميرة مزدوجة 50+0.3 ميجابيكسل</li>
+                            <li>بطارية 5000 مللي أمبير</li>
+                        </ul>
+                        <a href="https://wa.me/20123456789?text=أريد الاستفسار عن ريدمي 12C" class="contact-btn" style="background: var(--redmi-orange);">
+                            استفسر عبر واتساب
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Redmi 13C -->
+                <div class="product-card" data-search="ريدمي 13C هاتف ذكي">
+                    <div class="product-image-container">
+                        <img src="https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1700204215.19641092.png" alt="Redmi 13C" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">ريدمي 13C</h3>
+                        <ul class="product-specs">
+                            <li>شاشة 6.74 بوصة HD+</li>
+                            <li>معالج MediaTek Helio G99</li>
+                            <li>ذاكرة 4/6/8GB رام</li>
+                            <li>تخزين 128/256GB</li>
+                            <li>كاميرة ثلاثية 50+2+2 ميجابيكسل</li>
+                            <li>بطارية 5000 مللي أمبير</li>
+                        </ul>
+                        <a href="https://wa.me/20123456789?text=أريد الاستفسار عن ريدمي 13C" class="contact-btn" style="background: var(--redmi-orange);">
+                            استفسر عبر واتساب
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Redmi 14C -->
+                <div class="product-card" data-search="ريدمي 14C هاتف ذكي">
+                    <div class="product-badge">جديد</div>
+                    <div class="product-image-container">
+                        <img src="https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1682391115.11192421.png" alt="Redmi 14C" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">ريدمي 14C</h3>
+                        <ul class="product-specs">
+                            <li>شاشة 6.75 بوصة HD+</li>
+                            <li>معالج MediaTek Helio G99</li>
+                            <li>ذاكرة 4/6GB رام</li>
+                            <li>تخزين 128GB</li>
+                            <li>كاميرة ثلاثية 50+8+2 ميجابيكسل</li>
+                            <li>بطارية 5000 مللي أمبير</li>
+                        </ul>
+                        <a href="https://wa.me/20123456789?text=أريد الاستفسار عن ريدمي 14C" class="contact-btn" style="background: var(--redmi-orange);">
+                            استفسر عبر واتساب
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Redmi 13 -->
+                <div class="product-card" data-search="ريدمي 13 هاتف ذكي">
+                    <div class="product-image-container">
+                        <img src="https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1682391115.11192421.png" alt="Redmi 13" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">ريدمي 13</h3>
+                        <ul class="product-specs">
+                            <li>شاشة 6.6 بوصة FHD+</li>
+                            <li>معالج MediaTek Helio G96</li>
+                            <li>ذاكرة 4/6GB رام</li>
+                            <li>تخزين 64/128GB</li>
+                            <li>كاميرة ثلاثية 50+8+2 ميجابيكسل</li>
+                            <li>بطارية 5000 مللي أمبير</li>
+                        </ul>
+                        <a href="https://wa.me/20123456789?text=أريد الاستفسار عن ريدمي 13" class="contact-btn" style="background: var(--redmi-orange);">
+                            استفسر عبر واتساب
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Redmi 12 -->
+                <div class="product-card" data-search="ريدمي 12 هاتف ذكي">
+                    <div class="product-image-container">
+                        <img src="https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1682391115.11192421.png" alt="Redmi 12" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">ريدمي 12</h3>
+                        <ul class="product-specs">
+                            <li>شاشة 6.79 بوصة FHD+</li>
+                            <li>معالج MediaTek Helio G88</li>
+                            <li>ذاكرة 4/8GB رام</li>
+                            <li>تخزين 128/256GB</li>
+                            <li>كاميرة ثلاثية 50+8+2 ميجابيكسل</li>
+                            <li>بطارية 5000 مللي أمبير</li>
+                        </ul>
+                        <a href="https://wa.me/20123456789?text=أريد الاستفسار عن ريدمي 12" class="contact-btn" style="background: var(--redmi-orange);">
+                            استفسر عبر واتساب
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Redmi Note 13 -->
+                <div class="product-card" data-search="ريدمي نوت 13 هاتف ذكي">
+                    <div class="product-badge">الأفضل</div>
+                    <div class="product-image-container">
+                        <img src="https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1700204215.19641092.png" alt="Redmi Note 13" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">ريدمي نوت 13</h3>
+                        <ul class="product-specs">
+                            <li>شاشة 6.67 بوصة AMOLED</li>
+                            <li>معالج MediaTek Dimensity 6080</li>
+                            <li>ذاكرة 6/8GB رام</li>
+                            <li>تخزين 128/256GB</li>
+                            <li>كاميرة ثلاثية 108+8+2 ميجابيكسل</li>
+                            <li>بطارية 5000 مللي أمبير</li>
+                        </ul>
+                        <a href="https://wa.me/20123456789?text=أريد الاستفسار عن ريدمي نوت 13" class="contact-btn" style="background: var(--redmi-orange);">
+                            استفسر عبر واتساب
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Redmi Note 14 -->
+                <div class="product-card" data-search="ريدمي نوت 14 هاتف ذكي">
+                    <div class="product-badge">جديد</div>
+                    <div class="product-image-container">
+                        <img src="https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1700204215.19641092.png" alt="Redmi Note 14" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">ريدمي نوت 14</h3>
+                        <ul class="product-specs">
+                            <li>شاشة 6.7 بوصة AMOLED</li>
+                            <li>معالج MediaTek Dimensity 7050</li>
+                            <li>ذاكرة 8/12GB رام</li>
+                            <li>تخزين 256/512GB</li>
+                            <li>كاميرة ثلاثية 108+8+2 ميجابيكسل</li>
+                            <li>بطارية 5000 مللي أمبير</li>
+                        </ul>
+                        <a href="https://wa.me/20123456789?text=أريد الاستفسار عن ريدمي نوت 14" class="contact-btn" style="background: var(--redmi-orange);">
+                            استفسر عبر واتساب
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Redmi C16 -->
+                <div class="product-card" data-search="ريدمي C16 هاتف ذكي">
+                    <div class="product-image-container">
+                        <img src="https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1675063708.34673089.png" alt="Redmi C16" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">ريدمي C16</h3>
+                        <ul class="product-specs">
+                            <li>شاشة 6.5 بوصة HD+</li>
+                            <li>معالج MediaTek Helio G35</li>
+                            <li>ذاكرة 3/4GB رام</li>
+                            <li>تخزين 64/128GB</li>
+                            <li>كاميرة مزدوجة 13+2 ميجابيكسل</li>
+                            <li>بطارية 5000 مللي أمبير</li>
+                        </ul>
+                        <a href="https://wa.me/20123456789?text=أريد الاستفسار عن ريدمي C16" class="contact-btn" style="background: var(--redmi-orange);">
+                            استفسر عبر واتساب
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Redmi C63 -->
+                <div class="product-card" data-search="ريدمي C63 هاتف ذكي">
+                    <div class="product-image-container">
+                        <img src="https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1675063708.34673089.png" alt="Redmi C63" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">ريدمي C63</h3>
+                        <ul class="product-specs">
+                            <li>شاشة 6.6 بوصة HD+</li>
+                            <li>معالج MediaTek Helio G37</li>
+                            <li>ذاكرة 4/6GB رام</li>
+                            <li>تخزين 64/128GB</li>
+                            <li>كاميرة مزدوجة 50+2 ميجابيكسل</li>
+                            <li>بطارية 5000 مللي أمبير</li>
+                        </ul>
+                        <a href="https://wa.me/20123456789?text=أريد الاستفسار عن ريدمي C63" class="contact-btn" style="background: var(--redmi-orange);">
+                            استفسر عبر واتساب
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Redmi C67 -->
+                <div class="product-card" data-search="ريدمي C67 هاتف ذكي">
+                    <div class="product-image-container">
+                        <img src="https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1675063708.34673089.png" alt="Redmi C67" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">ريدمي C67</h3>
+                        <ul class="product-specs">
+                            <li>شاشة 6.7 بوصة HD+</li>
+                            <li>معالج MediaTek Helio G85</li>
+                            <li>ذاكرة 4/6GB رام</li>
+                            <li>تخزين 128GB</li>
+                            <li>كاميرة ثلاثية 50+8+2 ميجابيكسل</li>
+                            <li>بطارية 5000 مللي أمبير</li>
+                        </ul>
+                        <a href="https://wa.me/20123456789?text=أريد الاستفسار عن ريدمي C67" class="contact-btn" style="background: var(--redmi-orange);">
+                            استفسر عبر واتساب
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Redmi C75 -->
+                <div class="product-card" data-search="ريدمي C75 هاتف ذكي">
+                    <div class="product-image-container">
+                        <img src="https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1675063708.34673089.png" alt="Redmi C75" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">ريدمي C75</h3>
+                        <ul class="product-specs">
+                            <li>شاشة 6.8 بوصة HD+</li>
+                            <li>معالج MediaTek Helio G99</li>
+                            <li>ذاكرة 6/8GB رام</li>
+                            <li>تخزين 128/256GB</li>
+                            <li>كاميرة ثلاثية 108+8+2 ميجابيكسل</li>
+                            <li>بطارية 5000 مللي أمبير</li>
+                        </ul>
+                        <a href="https://wa.me/20123456789?text=أريد الاستفسار عن ريدمي C75" class="contact-btn" style="background: var(--redmi-orange);">
+                            استفسر عبر واتساب
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Redmi Note 60 X -->
+                <div class="product-card" data-search="ريدمي نوت 60 X هاتف ذكي">
+                    <div class="product-badge">الأحدث</div>
+                    <div class="product-image-container">
+                        <img src="https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1700204215.19641092.png" alt="Redmi Note 60 X" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">ريدمي نوت 60 X</h3>
+                        <ul class="product-specs">
+                            <li>شاشة 6.9 بوصة AMOLED</li>
+                            <li>معالج MediaTek Dimensity 7050</li>
+                            <li>ذاكرة 8/12GB رام</li>
+                            <li>تخزين 256/512GB</li>
+                            <li>كاميرة ثلاثية 108+8+2 ميجابيكسل</li>
+                            <li>بطارية 5000 مللي أمبير</li>
+                        </ul>
+                        <a href="https://wa.me/20123456789?text=أريد الاستفسار عن ريدمي نوت 60 X" class="contact-btn" style="background: var(--redmi-orange);">
+                            استفسر عبر واتساب
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- هواتف أوبو -->
+        <div id="phones-oppo" class="brand-products">
+            <div class="brand-header" style="border-color: var(--oppo-green);">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Oppo_LOGO_2019.svg" alt="Oppo Logo">
+                <h2>هواتف أوبو</h2>
+            </div>
+            <div class="products-grid">
+                <!-- Oppo A3 -->
+                <div class="product-card" data-search="أوبو A3 هاتف ذكي">
+                    <div class="product-image-container">
+                        <img src="https://image.oppo.com/content/dam/oppo/common/m-site/global/products/a3x/a3x.png" alt="Oppo A3" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">أوبو A3</h3>
+                        <ul class="product-specs">
+                            <li>شاشة 6.5 بوصة HD+</li>
+                            <li>معالج MediaTek Helio G35</li>
+                            <li>ذاكرة 4/6GB رام</li>
+                            <li>تخزين 64/128GB</li>
+                            <li>كاميرة مزدوجة 13+2 ميجابيكسل</li>
+                            <li>بطارية 5000 مللي أمبير</li>
+                        </ul>
+                        <a href="https://wa.me/20123456789?text=أريد الاستفسار عن أوبو A3" class="contact-btn" style="background: var(--oppo-green);">
+                            استفسر عبر واتساب
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Oppo A3x -->
+                <div class="product-card" data-search="أوبو A3x هاتف ذكي">
+                    <div class="product-image-container">
+                        <img src="https://image.oppo.com/content/dam/oppo/common/m-site/global/products/a3x/a3x.png" alt="Oppo A3x" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">أوبو A3x</h3>
+                        <ul class="product-specs">
+                            <li>شاشة 6.56 بوصة HD+</li>
+                            <li>معالج Snapdragon 680</li>
+                            <li>ذاكرة 4/6GB رام</li>
+                            <li>تخزين 64/128GB</li>
+                            <li>كاميرة مزدوجة 13+2 ميجابيكسل</li>
+                            <li>بطارية 5000 مللي أمبير</li>
+                        </ul>
+                        <a href="https://wa.me/20123456789?text=أريد الاستفسار عن أوبو A3x" class="contact-btn" style="background: var(--oppo-green);">
+                            استفسر عبر واتساب
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Oppo Reno 12F -->
+                <div class="product-card" data-search="أوبو رينو 12F هاتف ذكي">
+                    <div class="product-badge">جديد</div>
+                    <div class="product-image-container">
+                        <img src="https://image.oppo.com/content/dam/oppo/common/m-site/global/products/reno12f/reno12f.png" alt="Oppo Reno 12F" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">أوبو رينو 12F</h3>
+                        <ul class="product-specs">
+                            <li>شاشة 6.7 بوصة AMOLED</li>
+                            <li>معالج MediaTek Dimensity 7050</li>
+                            <li>ذاكرة 8/12GB رام</li>
+                            <li>تخزين 256/512GB</li>
+                            <li>كاميرة ثلاثية 108+8+2 ميجابيكسل</li>
+                            <li>بطارية 5000 مللي أمبير</li>
+                        </ul>
+                        <a href="https://wa.me/20123456789?text=أريد الاستفسار عن أوبو رينو 12F" class="contact-btn" style="background: var(--oppo-green);">
+                            استفسر عبر واتساب
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Oppo Reno 13F -->
+                <div class="product-card" data-search="أوبو رينو 13F هاتف ذكي">
+                    <div class="product-image-container">
+                        <img src="https://image.oppo.com/content/dam/oppo/common/m-site/global/products/reno12f/reno12f.png" alt="Oppo Reno 13F" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">أوبو رينو 13F</h3>
+                        <ul class="product-specs">
+                            <li>شاشة 6.8 بوصة AMOLED</li>
+                            <li>معالج MediaTek Dimensity 7050</li>
+                            <li>ذاكرة 8/12GB رام</li>
+                            <li>تخزين 256/512GB</li>
+                            <li>كاميرة ثلاثية 108+8+2 ميجابيكسل</li>
+                            <li>بطارية 5000 مللي أمبير</li>
+                        </ul>
+                        <a href="https://wa.me/20123456789?text=أريد الاستفسار عن أوبو رينو 13F" class="contact-btn" style="background: var(--oppo-green);">
+                            استفسر عبر واتساب
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Oppo A60 -->
+                <div class="product-card" data-search="أوبو A60 هاتف ذكي">
+                    <div class="product-image-container">
+                        <img src="https://image.oppo.com/content/dam/oppo/common/m-site/global/products/a3x/a3x.png" alt="Oppo A60" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">أوبو A60</h3>
+                        <ul class="product-specs">
+                            <li>شاشة 6.6 بوصة HD+</li>
+                            <li>معالج Snapdragon 680</li>
+                            <li>ذاكرة 6/8GB رام</li>
+                            <li>تخزين 128/256GB</li>
+                            <li>كاميرة ثلاثية 50+8+2 ميجابيكسل</li>
+                            <li>بطارية 5000 مللي أمبير</li>
+                        </ul>
+                        <a href="https://wa.me/20123456789?text=أريد الاستفسار عن أوبو A60" class="contact-btn" style="background: var(--oppo-green);">
+                            استفسر عبر واتساب
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Oppo A5 Pro -->
+                <div class="product-card" data-search="أوبو A5 Pro هاتف ذكي">
+                    <div class="product-badge">الأفضل</div>
+                    <div class="product-image-container">
+                        <img src="https://image.oppo.com/content/dam/oppo/common/m-site/global/products/a3x/a3x.png" alt="Oppo A5 Pro" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">أوبو A5 Pro</h3>
+                        <ul class="product-specs">
+                            <li>شاشة 6.7 بوصة AMOLED</li>
+                            <li>معالج MediaTek Dimensity 7050</li>
+                            <li>ذاكرة 8/12GB رام</li>
+                            <li>تخزين 256/512GB</li>
+                            <li>كاميرة ثلاثية 108+8+2 ميجابيكسل</li>
+                            <li>بطارية 5000 مللي أمبير</li>
+                        </ul>
+                        <a href="https://wa.me/20123456789?text=أريد الاستفسار عن أوبو A5 Pro" class="contact-btn" style="background: var(--oppo-green);">
+                            استفسر عبر واتساب
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- هواتف فيفو -->
+        <div id="phones-vivo" class="brand-products">
+            <div class="brand-header" style="border-color: var(--vivo-blue);">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Vivo_logo.svg" alt="Vivo Logo">
+                <h2>هواتف فيفو</h2>
+            </div>
+            <div class="products-grid">
+                <!-- Vivo Y04 -->
+                <div class="product-card" data-search="فيفو Y04 هاتف ذكي">
+                    <div class="product-image-container">
+                        <img src="https://www.vivo.com/content/dam/vivo/global/products/y04/y04.png" alt="Vivo Y04" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">فيفو Y04</h3>
+                        <ul class="product-specs">
+                            <li>شاشة 6.51 بوصة HD+</li>
+                            <li>معالج MediaTek Helio P35</li>
+                            <li>ذاكرة 3/4GB رام</li>
+                            <li>تخزين 32/64GB</li>
+                            <li>كاميرة مزدوجة 8+2 ميجابيكسل</li>
+                            <li>بطارية 5000 مللي أمبير</li>
+                        </ul>
+                        <a href="https://wa.me/20123456789?text=أريد الاستفسار عن فيفو Y04" class="contact-btn" style="background: var(--vivo-blue);">
+                            استفسر عبر واتساب
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Vivo Y19s -->
+                <div class="product-card" data-search="فيفو Y19s هاتف ذكي">
+                    <div class="product-image-container">
+                        <img src="https://www.vivo.com/content/dam/vivo/global/products/y19s/y19s.png" alt="Vivo Y19s" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">فيفو Y19s</h3>
+                        <ul class="product-specs">
+                            <li>شاشة 6.53 بوصة FHD+</li>
+                            <li>معالج MediaTek Helio G85</li>
+                            <li>ذاكرة 4/6GB رام</li>
+                            <li>تخزين 64/128GB</li>
+                            <li>كاميرة ثلاثية 16+8+2 ميجابيكسل</li>
+                            <li>بطارية 5000 مللي أمبير</li>
+                        </ul>
+                        <a href="https://wa.me/20123456789?text=أريد الاستفسار عن فيفو Y19s" class="contact-btn" style="background: var(--vivo-blue);">
+                            استفسر عبر واتساب
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Vivo Y29 -->
+                <div class="product-card" data-search="فيفو Y29 هاتف ذكي">
+                    <div class="product-badge">جديد</div>
+                    <div class="product-image-container">
+                        <img src="https://www.vivo.com/content/dam/vivo/global/products/y29/y29.png" alt="Vivo Y29" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">فيفو Y29</h3>
+                        <ul class="product-specs">
+                            <li>شاشة 6.7 بوصة FHD+</li>
+                            <li>معالج MediaTek Helio G99</li>
+                            <li>ذاكرة 6/8GB رام</li>
+                            <li>تخزين 128/256GB</li>
+                            <li>كاميرة ثلاثية 50+8+2 ميجابيكسل</li>
+                            <li>بطارية 5000 مللي أمبير</li>
+                        </ul>
+                        <a href="https://wa.me/20123456789?text=أريد الاستفسار عن فيفو Y29" class="contact-btn" style="background: var(--vivo-blue);">
+                            استفسر عبر واتساب
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Vivo V40 Lite -->
+                <div class="product-card" data-search="فيفو V40 Lite هاتف ذكي">
+                    <div class="product-badge">الأكثر مبيعاً</div>
+                    <div class="product-image-container">
+                        <img src="https://www.vivo.com/content/dam/vivo/global/products/v40lite/v40lite.png" alt="Vivo V40 Lite" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">فيفو V40 Lite</h3>
+                        <ul class="product-specs">
+                            <li>شاشة 6.8 بوصة AMOLED</li>
+                            <li>معالج MediaTek Dimensity 7050</li>
+                            <li>ذاكرة 8/12GB رام</li>
+                            <li>تخزين 256/512GB</li>
+                            <li>كاميرة ثلاثية 108+8+2 ميجابيكسل</li>
+                            <li>بطارية 5000 مللي أمبير</li>
+                        </ul>
+                        <a href="https://wa.me/20123456789?text=أريد الاستفسار عن فيفو V40 Lite" class="contact-btn" style="background: var(--vivo-blue);">
+                            استفسر عبر واتساب
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- هواتف انفنكس -->
+        <div id="phones-infinix" class="brand-products">
+            <div class="brand-header" style="border-color: var(--infinix-black);">
+                <img src="https://www.infinixmobility.com/fileadmin/images/logo.png" alt="Infinix Logo">
+                <h2>هواتف انفنكس</h2>
+            </div>
+            <div class="products-grid">
+                <!-- Infinix Smart 8 -->
+                <div class="product-card" data-search="انفنكس سمارت 8 هاتف ذكي">
+                    <div class="product-image-container">
+                        <img src="https://www.infinixmobility.com/fileadmin/images/smart8/smart8.png" alt="Infinix Smart 8" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">انفنكس سمارت 8</h3>
+                        <ul class="product-specs">
+                            <li>شاشة 6.6 بوصة HD+</li>
+                            <li>معالج MediaTek Helio G35</li>
+                            <li>ذاكرة 3/4GB رام</li>
+                            <li>تخزين 64/128GB</li>
+                            <li>كاميرة مزدوجة 13+2 ميجابيكسل</li>
+                            <li>بطارية 5000 مللي أمبير</li>
+                        </ul>
+                        <a href="https://wa.me/20123456789?text=أريد الاستفسار عن انفنكس سمارت 8" class="contact-btn" style="background: var(--infinix-black);">
+                            استفسر عبر واتساب
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Infinix Smart 9 -->
+                <div class="product-card" data-search="انفنكس سمارت 9 هاتف ذكي">
+                    <div class="product-image-container">
+                        <img src="https://www.infinixmobility.com/fileadmin/images/smart9/smart9.png" alt="Infinix Smart 9" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">انفنكس سمارت 9</h3>
+                        <ul class="product-specs">
+                            <li>شاشة 6.7 بوصة HD+</li>
+                            <li>معالج MediaTek Helio G37</li>
+                            <li>ذاكرة 4/6GB رام</li>
+                            <li>تخزين 64/128GB</li>
+                            <li>كاميرة مزدوجة 16+2 ميجابيكسل</li>
+                            <li>بطارية 5000 مللي أمبير</li>
+                        </ul>
+                        <a href="https://wa.me/20123456789?text=أريد الاستفسار عن انفنكس سمارت 9" class="contact-btn" style="background: var(--infinix-black);">
+                            استفسر عبر واتساب
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Infinix Hot 40i -->
+                <div class="product-card" data-search="انفنكس هوت 40i هاتف ذكي">
+                    <div class="product-badge">جديد</div>
+                    <div class="product-image-container">
+                        <img src="https://www.infinixmobility.com/fileadmin/images/hot40i/hot40i.png" alt="Infinix Hot 40i" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">انفنكس هوت 40i</h3>
+                        <ul class="product-specs">
+                            <li>شاشة 6.6 بوصة HD+</li>
+                            <li>معالج MediaTek Helio G85</li>
+                            <li>ذاكرة 4/6GB رام</li>
+                            <li>تخزين 64/128GB</li>
+                            <li>كاميرة مزدوجة 50+2 ميجابيكسل</li>
+                            <li>بطارية 5000 مللي أمبير</li>
+                        </ul>
+                        <a href="https://wa.me/20123456789?text=أريد الاستفسار عن انفنكس هوت 40i" class="contact-btn" style="background: var(--infinix-black);">
+                            استفسر عبر واتساب
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Infinix Hot 50i -->
+                <div class="product-card" data-search="انفنكس هوت 50i هاتف ذكي">
+                    <div class="product-image-container">
+                        <img src="https://www.infinixmobility.com/fileadmin/images/hot50i/hot50i.png" alt="Infinix Hot 50i" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">انفنكس هوت 50i</h3>
+                        <ul class="product-specs">
+                            <li>شاشة 6.8 بوصة HD+</li>
+                            <li>معالج MediaTek Helio G88</li>
+                            <li>ذاكرة 4/6GB رام</li>
+                            <li>تخزين 64/128GB</li>
+                            <li>كاميرة مزدوجة 50+2 ميجابيكسل</li>
+                            <li>بطارية 5000 مللي أمبير</li>
+                        </ul>
+                        <a href="https://wa.me/20123456789?text=أريد الاستفسار عن انفنكس هوت 50i" class="contact-btn" style="background: var(--infinix-black);">
+                            استفسر عبر واتساب
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Infinix Hot 50 -->
+                <div class="product-card" data-search="انفنكس هوت 50 هاتف ذكي">
+                    <div class="product-badge">الأكثر مبيعاً</div>
+                    <div class="product-image-container">
+                        <img src="https://www.infinixmobility.com/fileadmin/images/hot50/hot50.png" alt="Infinix Hot 50" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">انفنكس هوت 50</h3>
+                        <ul class="product-specs">
+                            <li>شاشة 6.9 بوصة FHD+</li>
+                            <li>معالج MediaTek Helio G99</li>
+                            <li>ذاكرة 6/8GB رام</li>
+                            <li>تخزين 128/256GB</li>
+                            <li>كاميرة ثلاثية 50+8+2 ميجابيكسل</li>
+                            <li>بطارية 5000 مللي أمبير</li>
+                        </ul>
+                        <a href="https://wa.me/20123456789?text=أريد الاستفسار عن انفنكس هوت 50" class="contact-btn" style="background: var(--infinix-black);">
+                            استفسر عبر واتساب
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- قسم الأسكرينات -->
+    <div id="screens" class="content-section">
+        <div class="categories">
+            <button class="category-btn hd-btn active" onclick="filterProducts('screens', 'hd')">
+                أسكرينات HD
+            </button>
+            <button class="category-btn d5-btn" onclick="filterProducts('screens', '5d')">
+                أسكرينات 5D
+            </button>
+            <button class="category-btn ghazala-btn" onclick="filterProducts('screens', 'ghazala')">
+                أسكرينات غزالة
+            </button>
+            <button class="category-btn gorilla-btn" onclick="filterProducts('screens', 'gorilla')">
+                أسكرينات غوريلا
+            </button>
+            <button class="category-btn clear-btn" onclick="filterProducts('screens', 'clear')">
+                أسكرينات شفافة
+            </button>
+        </div>
+
+        <!-- أسكرينات HD -->
+        <div id="screens-hd" class="category-products active-category">
+            <div class="category-header" style="border-color: var(--screen-hd);">
+                <h2>أسكرينات HD</h2>
+            </div>
+            <div class="products-grid">
+                <div class="product-card" data-search="أسكرين HD حماية عالية الدقة">
+                    <div class="product-badge">الأكثر مبيعاً</div>
+                    <div class="product-image-container">
+                        <img src="https://via.placeholder.com/300x300?text=أسكرين+HD" alt="أسكرين HD" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">أسكرين حماية HD</h3>
+                        <ul class="product-specs">
+                            <li>حماية عالية الدقة</li>
+                            <li>شفافية عالية 99%</li>
+                            <li>مقاومة للخدوش</li>
+                            <li>مناسبة لجميع الموديلات</li>
+                            <li>سهولة التركيب</li>
+                        </ul>
+                        <a href="https://wa.me/20123456789?text=أريد الاستفسار عن أسكرين HD" class="contact-btn" style="background: var(--screen-hd);">
+                            استفسر عبر واتساب
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- أسكرينات 5D -->
+        <div id="screens-5d" class="category-products">
+            <div class="category-header" style="border-color: var(--screen-5d);">
+                <h2>أسكرينات 5D</h2>
+            </div>
+            <div class="products-grid">
+                <div class="product-card" data-search="أسكرين 5D حماية كاملة">
+                    <div class="product-image-container">
+                        <img src="https://via.placeholder.com/300x300?text=أسكرين+5D" alt="أسكرين 5D" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">أسكرين حماية 5D</h3>
+                        <ul class="product-specs">
+                            <li>حماية كاملة من جميع الجهات</li>
+                            <li>طبقة مقاومة للصدمات</li>
+                            <li>حافة منحنية كاملة</li>
+                            <li>حماية من البصمات</li>
+                            <li>ضمان ضد الكسر</li>
+                        </ul>
+                        <a href="https://wa.me/20123456789?text=أريد الاستفسار عن أسكرين 5D" class="contact-btn" style="background: var(--screen-5d);">
+                            استفسر عبر واتساب
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- أسكرينات غزالة -->
+        <div id="screens-ghazala" class="category-products">
+            <div class="category-header" style="border-color: var(--screen-ghazala);">
+                <h2>أسكرينات غزالة</h2>
+            </div>
+            <div class="products-grid">
+                <div class="product-card" data-search="أسكرين غزالة سوبر مقاومة للخدوش">
+                    <div class="product-badge">جديد</div>
+                    <div class="product-image-container">
+                        <img src="https://via.placeholder.com/300x300?text=أسكرين+غزالة+سوبر" alt="أسكرين غزالة سوبر" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">أسكرين غزالة سوبر اكس</h3>
+                        <ul class="product-specs">
+                            <li>مقاومة عالية للخدوش</li>
+                            <li>حماية من الصدمات</li>
+                            <li>طبقة أولية ضد الكسر</li>
+                            <li>سهولة التركيب</li>
+                            <li>ضمان لمدة عام</li>
+                        </ul>
+                        <a href="https://wa.me/20123456789?text=أريد الاستفسار عن أسكرين غزالة سوبر" class="contact-btn" style="background: var(--screen-ghazala);">
+                            استفسر عبر واتساب
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- أسكرينات غوريلا -->
+        <div id="screens-gorilla" class="category-products">
+            <div class="category-header" style="border-color: var(--screen-gorilla);">
+                <h2>أسكرينات غوريلا</h2>
+            </div>
+            <div class="products-grid">
+                <div class="product-card" data-search="أسكرين غوريلا متانة عالية">
+                    <div class="product-image-container">
+                        <img src="https://via.placeholder.com/300x300?text=أسكرين+غوريلا" alt="أسكرين غوريلا" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">أسكرين غوريلا</h3>
+                        <ul class="product-specs">
+                            <li>متانة عالية ضد الكسر</li>
+                            <li>حماية من الخدوش العميقة</li>
+                            <li>شفافية عالية</li>
+                            <li>طبقة مقاومة للبصمات</li>
+                            <li>ضمان ضد الكسر</li>
+                        </ul>
+                        <a href="https://wa.me/20123456789?text=أريد الاستفسار عن أسكرين غوريلا" class="contact-btn" style="background: var(--screen-gorilla);">
+                            استفسر عبر واتساب
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- أسكرينات شفافة -->
+        <div id="screens-clear" class="category-products">
+            <div class="category-header" style="border-color: var(--screen-clear);">
+                <h2>أسكرينات شفافة</h2>
+            </div>
+            <div class="products-grid">
+                <div class="product-card" data-search="أسكرين شفافة غير مرئي">
+                    <div class="product-image-container">
+                        <img src="https://via.placeholder.com/300x300?text=أسكرين+شفافة" alt="أسكرين شفافة" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">أسكرين شفافة</h3>
+                        <ul class="product-specs">
+                            <li>غير مرئية تقريباً</li>
+                            <li>حماية دون التأثير على الوضوح</li>
+                            <li>مقاومة للخدوش</li>
+                            <li>سهولة التركيب</li>
+                            <li>مناسبة للهواتف الحديثة</li>
+                        </ul>
+                        <a href="https://wa.me/20123456789?text=أريد الاستفسار عن أسكرين شفافة" class="contact-btn" style="background: var(--screen-clear);">
+                            استفسر عبر واتساب
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- قسم الإكسسوارات -->
+    <div id="accessories" class="content-section">
+        <div class="categories">
+            <button class="category-btn accessories-btn active" onclick="filterProducts('accessories', 'all')">
+                جميع الإكسسوارات
+            </button>
+        </div>
+
+        <div id="accessories-all" class="category-products active-category">
+            <div class="category-header" style="border-color: var(--accessories);">
+                <h2>إكسسوارات الهواتف</h2>
+            </div>
+            <div class="products-grid">
+                <div class="product-card" data-search="إكسسوارات نسائية حريمي">
+                    <div class="product-image-container">
+                        <img src="https://via.placeholder.com/300x300?text=إكسسوارات+نسائية" alt="إكسسوارات نسائية" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">إكسسوارات حريمي</h3>
+                        <ul class="product-specs">
+                            <li>تصميمات أنيقة للسيدات</li>
+                            <li>ألوان متنوعة</li>
+                            <li>خامات عالية الجودة</li>
+                            <li>مناسبة لجميع الموديلات</li>
+                            <li>أسعار تنافسية</li>
+                        </ul>
+                        <a href="https://wa.me/20123456789?text=أريد الاستفسار عن إكسسوارات نسائية" class="contact-btn" style="background: var(--accessories);">
+                            استفسر عبر واتساب
+                        </a>
+                    </div>
+                </div>
+                <div class="product-card" data-search="إكسسوارات رجالية أنيقة">
+                    <div class="product-image-container">
+                        <img src="https://via.placeholder.com/300x300?text=إكسسوارات+رجالية" alt="إكسسوارات رجالية" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">إكسسوارات رجالي</h3>
+                        <ul class="product-specs">
+                            <li>تصميمات عصرية للرجال</li>
+                            <li>خامات متينة</li>
+                            <li>ألوان كلاسيكية</li>
+                            <li>حماية ممتازة للهاتف</li>
+                            <li>ضمان لمدة 6 أشهر</li>
+                        </ul>
+                        <a href="https://wa.me/20123456789?text=أريد الاستفسار عن إكسسوارات رجالية" class="contact-btn" style="background: var(--accessories);">
+                            استفسر عبر واتساب
+                        </a>
+                    </div>
+                </div>
+                <div class="product-card" data-search="أغلفة هواتف أغطية حماية">
+                    <div class="product-image-container">
+                        <img src="https://via.placeholder.com/300x300?text=أغلفة+هواتف" alt="أغلفة هواتف" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">أغلفة هواتف</h3>
+                        <ul class="product-specs">
+                            <li>حماية شاملة للهاتف</li>
+                            <li>تصميمات متنوعة</li>
+                            <li>خامات عالية الجودة</li>
+                            <li>مقاومة للصدمات</li>
+                            <li>مناسبة لجميع الموديلات</li>
+                        </ul>
+                        <a href="https://wa.me/20123456789?text=أريد الاستفسار عن أغلفة هواتف" class="contact-btn" style="background: var(--accessories);">
+                            استفسر عبر واتساب
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // تغيير الأقسام الرئيسية (هواتف، أسكرينات، إكسسوارات)
+        function showSection(sectionId) {
+            // تحديد الأزرار النشطة
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // إخفاء جميع الأقسام
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active-section');
+            });
+            
+            // إظهار القسم المطلوب
+            document.getElementById(sectionId).classList.add('active-section');
+            
+            // إعادة تعيين البحث
+            document.getElementById('searchInput').value = '';
+            
+            // إظهار العناصر في القسم الجديد
+            const activeBrand = document.querySelector(`#${sectionId} .active-brand`);
+            const activeCategory = document.querySelector(`#${sectionId} .active-category`);
+            
+            if (activeBrand) {
+                const products = activeBrand.querySelectorAll('.product-card');
+                products.forEach(product => product.style.display = 'block');
+            }
+            
+            if (activeCategory) {
+                const products = activeCategory.querySelectorAll('.product-card');
+                products.forEach(product => product.style.display = 'block');
+            }
+        }
+        
+        // تصفية المنتجات حسب الفئة
+        function filterProducts(section, category) {
+            // تحديث الأزرار النشطة
+            const buttons = document.querySelectorAll(`#${section} .brand-btn, #${section} .category-btn`);
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // إخفاء جميع المنتجات في القسم
+            const containers = document.querySelectorAll(`#${section} .brand-products, #${section} .category-products`);
+            containers.forEach(container => {
+                container.classList.remove('active-brand', 'active-category');
+            });
+            
+            // إظهار الفئة المطلوبة
+            const targetContainer = document.getElementById(`${section}-${category}`);
+            if (targetContainer) {
+                targetContainer.classList.add(section === 'phones' ? 'active-brand' : 'active-category');
+                
+                // إظهار المنتجات مع تأثير
+                const products = targetContainer.querySelectorAll('.product-card');
+                products.forEach(product => {
+                    product.style.display = 'none';
+                    product.style.animation = 'none';
+                    setTimeout(() => {
+                        product.style.display = 'block';
+                        product.style.animation = 'fadeIn 0.5s ease forwards';
+                    }, 10);
+                });
+            }
+        }
+        
+        // وظيفة البحث
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const activeSection = document.querySelector('.content-section.active-section');
+            
+            if (!activeSection) return;
+            
+            const products = activeSection.querySelectorAll('.product-card');
+            
+            products.forEach(product => {
+                const productText = product.dataset.search.toLowerCase();
+                if (productText.includes(searchTerm)) {
+                    product.style.display = 'block';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+        });
+        
+        // تفعيل القسم الافتراضي عند التحميل
+        window.addEventListener('DOMContentLoaded', () => {
+            showSection('phones');
+            filterProducts('phones', 'redmi');
+        });
+    </script>
+</body>
+</html>
